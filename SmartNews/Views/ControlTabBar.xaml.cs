@@ -49,7 +49,7 @@ namespace SmartNews.Views
             }
             if (propertyName == ItemsSelectedProperty.PropertyName)
             {
-                
+
             }
         }
 
@@ -59,14 +59,14 @@ namespace SmartNews.Views
             foreach (var item in Container.Children)
             {
                 (item.BindingContext as TabBarItemModel).IsSelected = false;
-                item.Margin = new Thickness(0,10,0,0);
+                item.Margin = new Thickness(0, 10, 0, 0);
             }
             (senderObj.BindingContext as TabBarItemModel).IsSelected = true;
             if ((senderObj.BindingContext as TabBarItemModel).IsSelected)
             {
-                senderObj.Margin = new Thickness(0,7,0,2);
-                senderObj.Padding = new Thickness(0, 0, 0, 2);
-                senderObj.HeightRequest = 38;
+                senderObj.Margin = new Thickness(0, 7, 0, 1);
+                senderObj.Padding = new Thickness(0, 0, 0, 1);
+                senderObj.HeightRequest = 35;
                 BottomColor.BackgroundColor = (senderObj.BindingContext as TabBarItemModel).ItemColor;
                 BottomColor.Margin = new Thickness(0, -13, 0, 0);
             }
