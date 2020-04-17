@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:views="clr-namespace:SmartNews.Views" x:Class="SmartNews.Views.MainPage">
+    <TabbedPage.Children>
+       <NavigationPage Title="Vnxpress" BackgroundColor="Red" BarTextColor="White">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:RssTriThucPage Url="https://cdn.24h.com.vn/upload/rss/trangchu24h.rss"/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="tinhte.vn" BackgroundColor="Green">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:RssTriThucPage Url="https://tinhte.vn/rss/"/>
+            </x:Arguments>
+        </NavigationPage>
+           <NavigationPage Title="24h.com.vn" BackgroundColor="Blue">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:RssTriThucPage Url="https://cdn.24h.com.vn/upload/rss/tintuctrongngay.rss"/>
+            </x:Arguments>
+        </NavigationPage>
+           <NavigationPage Title="thanhnien.vn" BackgroundColor="Blue">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:RssTriThucPage Url="https://thanhnien.vn/rss/viet-nam.rss"/>
+            </x:Arguments>
+        </NavigationPage>
+            <NavigationPage Title="trithuc.vn" BackgroundColor="Blue">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:RssTriThucPage Url="https://trithucvn.net/tin-tuc-vn/feed"/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Spacing="0"
+             Margin="0,10,0,0"
+             x:Class="SmartNews.Views.TabItem">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonCss" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HeightRequest" Value="33"/>
+                <!--<Setter Property="Margin" Value="0,2,0,0"/>-->
+            </Style>
+        </ResourceDictionary>
+    </StackLayout.Resources>
+    <yummy:PancakeView BackgroundColor="{Binding ItemColor}" CornerRadius="5" IsClippedToBounds="true">
+        <StackLayout>
+            <StackLayout IsVisible="{Binding IsSelected}"/>
+            <Label Text="{Binding TitleBar}" Style="{StaticResource buttonCss}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnContentTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </yummy:PancakeView>
+</StackLayout>

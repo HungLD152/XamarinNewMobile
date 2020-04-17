@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SmartNews.Views.RssDetailsPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="Detail" VerticalOptions="FillAndExpand">
+            <WebView x:Name="webViewDetail"
+                       Source="https://www.24h.com.vn/kinh-doanh/co-phai-dong-thue-khi-nhan-thua-ke-nha-dat-khong-c161a1141357.html"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
