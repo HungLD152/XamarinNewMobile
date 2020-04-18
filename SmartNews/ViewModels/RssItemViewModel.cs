@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Input;
+using System.Xml;
 using System.Xml.Linq;
 using SmartNews.Models;
 using SmartNews.Utils;
@@ -106,32 +107,48 @@ namespace SmartNews.ViewModels
                 List<RSSFeedItem> list =
                     channel.Elements(XName.Get("item")).Select((XElement element) =>
                     {
-                        var desciption = element.Element(XName.Get("description")).Attributes("url");
-                        return new RSSFeedItem()
-                        {
-                            Title = element.Element(XName.Get("title")).Value,
-                            Description = element.Element(XName.Get("description")).Value,
-                            Link = element.Element(XName.Get("link")).Value,
-                            PubDate = element.Element(XName.Get("pubDate")).Value,
-                            Thumbnail = element.Element(XName.Get("description")).Attributes("url").ToString()
-                        };
+                        var desciption = element.Element(XName.Get("description"));
+                        var image = desciption.Element(XName.Get("img")).Attribute("src").Value;
+                        
+                        var result = new RSSFeedItem();
+                        result.Title = element.Element(XName.Get("title")).Value;
+                        result.Description = desciption.Value;
+                        result.Link = element.Element(XName.Get("link")).Value;
+                        result.PubDate = element.Element(XName.Get("pubDate")).Value;
+                        result.Thumbnail = image;
+                        //var listE2 = element.Element("description").Elements("img");
+                        //foreach (var itemImg in listE2)
+                        //{
+                        //    var eImg = XElement.Parse(itemImg.ToString());
+                        //    result.Thumbnail = eImg.Attribute("src").Value;
+                        //}
+
+                        return result;
+                        //return new RSSFeedItem()
+                        //{
+                        //    Title = element.Element(XName.Get("title")).Value,
+                        //    Description = element.Element(XName.Get("description")).Value,
+                        //    Link = element.Element(XName.Get("link")).Value,
+                        //    PubDate = element.Element(XName.Get("pubDate")).Value,
+                        //    Thumbnail = element.Element(XName.Get("description")).Attributes("url").ToString()
+                        //};
                     }).ToList();
-                //list.Add(new RSSFeedItem()
-                //{
-                //    Title = "TopCách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                //    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                //    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
-                //    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
-                //    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-                //});
-                //list.Add(new RSSFeedItem()
-                //{
-                //    Title = "Top1Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                //    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                //    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
-                //    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
-                //    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-                //});
+                list.Add(new RSSFeedItem()
+                {
+                    Title = "TopCách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
+                    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
+                    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
+                    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
+                    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
+                });
+                list.Add(new RSSFeedItem()
+                {
+                    Title = "Top1Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
+                    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
+                    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
+                    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
+                    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
+                });
                 var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
                 try
                 {
