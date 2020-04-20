@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
@@ -90,86 +91,79 @@ namespace SmartNews.ViewModels
             WebRequest request = WebRequest.Create(Url);
             request.BeginGetResponse((args) =>
             {
-                // Download XML.
-                Stream stream = request.EndGetResponse(args).GetResponseStream();
-                StreamReader reader = new StreamReader(stream);
-                string xml = reader.ReadToEnd();
-
-                // Parse XML to extract data from RSS feed.
-                XDocument doc = XDocument.Parse(xml);
-                XElement rss = doc.Element(XName.Get("rss"));
-                XElement channel = rss.Element(XName.Get("channel"));
-
-                // Set Title property.
-                Title = channel.Element(XName.Get("title")).Value;
-
-                // Set Items property.
-                List<RSSFeedItem> list =
-                    channel.Elements(XName.Get("item")).Select((XElement element) =>
-                    {
-                        var desciption = element.Element(XName.Get("description"));
-                        var image = desciption.Element(XName.Get("img")).Attribute("src").Value;
-                        
-                        var result = new RSSFeedItem();
-                        result.Title = element.Element(XName.Get("title")).Value;
-                        result.Description = desciption.Value;
-                        result.Link = element.Element(XName.Get("link")).Value;
-                        result.PubDate = element.Element(XName.Get("pubDate")).Value;
-                        result.Thumbnail = image;
-                        //var listE2 = element.Element("description").Elements("img");
-                        //foreach (var itemImg in listE2)
-                        //{
-                        //    var eImg = XElement.Parse(itemImg.ToString());
-                        //    result.Thumbnail = eImg.Attribute("src").Value;
-                        //}
-
-                        return result;
-                        //return new RSSFeedItem()
-                        //{
-                        //    Title = element.Element(XName.Get("title")).Value,
-                        //    Description = element.Element(XName.Get("description")).Value,
-                        //    Link = element.Element(XName.Get("link")).Value,
-                        //    PubDate = element.Element(XName.Get("pubDate")).Value,
-                        //    Thumbnail = element.Element(XName.Get("description")).Attributes("url").ToString()
-                        //};
-                    }).ToList();
-                list.Add(new RSSFeedItem()
-                {
-                    Title = "TopCách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
-                    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
-                    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-                });
-                list.Add(new RSSFeedItem()
-                {
-                    Title = "Top1Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                    Description = "Cách ly toàn xã hội từ 1/4 trên toàn quốc: Người dân cần tuân thủ những gì?",
-                    Link = "https://www.24h.com.vn/tin-tuc-trong-ngay/cach-ly-toan-xa-hoi-tu-1-4-tren-toan-quoc-nguoi-dan-can-tuan-thu-nhung-gi-c46a1136809.html",
-                    PubDate = "Wed, 01 Apr 2020 14:13:34 +0700",
-                    Thumbnail = "https://gamek.mediacdn.vn/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-                });
-                var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
                 try
                 {
-                    if (!string.IsNullOrEmpty(searchText))
-                    {
-                        Items = lstItem.Where(s => s.Title.ToLower().Contains(searchText.ToLower())).ToList().ToObservableCollection();
-                    }
-                    else
-                    {
-                        Items = lstItem.ToObservableCollection();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                        // Download XML.
+                        Stream stream = request.EndGetResponse(args).GetResponseStream();
+                    StreamReader reader = new StreamReader(stream);
+                    string xml = reader.ReadToEnd();
 
-                // Set IsRefreshing to false to stop the 'wait' icon.
-                IsRefreshing = false;
+                        // Parse XML to extract data from RSS feed.
+                        XDocument doc = XDocument.Parse(xml);
+                    XElement rss = doc.Element(XName.Get("rss"));
+                    XElement channel = rss.Element(XName.Get("channel"));
+
+                        // Set Title property.
+                        Title = channel.Element(XName.Get("title")).Value;
+
+                        // Set Items property.
+                        List<RSSFeedItem> list =
+                        channel.Elements(XName.Get("item")).Select((XElement element) =>
+                        {
+                            var desciption = element.Element(XName.Get("description"));
+                                //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
+                                var result = new RSSFeedItem();
+                            result.Title = element.Element(XName.Get("title")).Value;
+                            result.Description = desciption.Value;
+                            result.Link = element.Element(XName.Get("link")).Value;
+                            result.PubDate = element.Element(XName.Get("pubDate")).Value;
+                                #region get images form description
+                                Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
+                            MatchCollection mactches = regx.Matches(desciption.ToString());
+                            if (mactches.Count > 0)
+                            {
+                                foreach (var urlImage in mactches)
+                                {
+                                    result.Thumbnail = urlImage.ToString();
+                                }
+                            }
+                            else
+                            {
+                                result.Thumbnail = "";
+                            }
+                                #endregion
+                                return result;
+
+                        }).ToList();
+                    var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(searchText))
+                        {
+                            Items = lstItem.Where(s => s.Title.ToLower().Contains(searchText.ToLower())).ToList().ToObservableCollection();
+                        }
+                        else
+                        {
+                            Items = lstItem.ToObservableCollection();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                        // Set IsRefreshing to false to stop the 'wait' icon.
+                        IsRefreshing = false;
+                }
+                catch (Exception)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        Application.Current.MainPage.DisplayAlert("Server Error", "Not Connected", "OK");
+                    });
+                }
             }, null);
         }
-        #endregion
     }
+    #endregion
 }
