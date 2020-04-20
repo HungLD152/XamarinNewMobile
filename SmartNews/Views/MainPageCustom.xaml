@@ -36,7 +36,7 @@
                                 <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#333333" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
                                 <Label Text="{Binding DecoPubDate}" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"/>
                             </StackLayout>
-                            <Image Source="{Binding Thumbnail}" WidthRequest="150" HeightRequest="120" VerticalOptions="StartAndExpand"/>
+                            <Image Source="{Binding Thumbnail}" WidthRequest="150" HeightRequest="120" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </yummy:PancakeView>
                 </ViewCell>
