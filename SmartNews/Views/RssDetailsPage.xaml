@@ -10,6 +10,9 @@
             <Button Text="&lt; Back to List"
                         HorizontalOptions="Center"
                         Clicked="OnBackButtonClicked" />
+            <Button Text="&lt; Forward"
+                        HorizontalOptions="End"
+                        Clicked="OnForwardButton_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

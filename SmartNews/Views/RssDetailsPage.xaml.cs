@@ -28,5 +28,13 @@ namespace SmartNews.Views
             }
             else return base.OnBackButtonPressed();
         }
+
+        private void OnForwardButton_Clicked(object sender, EventArgs e)
+        {
+            if (webViewDetail.CanGoForward)
+            {
+                webViewDetail.GoForward();
+            }
+        }
     }
 }
