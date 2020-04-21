@@ -10,8 +10,8 @@
              ios:Page.UseSafeArea="True">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="5, 20, 5, 0" />
-            <On Platform="Android, UWP" Value="10, 0" />
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+            <On Platform="Android, UWP" Value="0, 0" />
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Resources>

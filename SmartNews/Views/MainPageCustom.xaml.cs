@@ -17,9 +17,9 @@ namespace SmartNews.Views
         {
             InitializeComponent();
             rssItem = new RSSFeedItem();
-            BindingContext = viewModel;
             viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
             viewModel.LoadRssFeed();
+            BindingContext = viewModel;
             TabBar.OnTabBarClicked += TabBar_OnTabItemClicked;
         }
 
