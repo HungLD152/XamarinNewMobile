@@ -12,12 +12,10 @@ namespace SmartNews.Models
         public string Author { get; set; }
         public string Thumbnail { get; set; }
         public bool IsPriority { get; set; }
-
-        
-}
+    }
     public partial class RSSFeedItem
     {
-        public DateTime PubDateTime => DateTime.Parse(PubDate);
+        public DateTime PubDateTime => DateTime.Parse(PubDate.Substring(0, 24));
         public string DecoPubDate
         {
             get

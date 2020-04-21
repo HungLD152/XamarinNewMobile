@@ -68,9 +68,33 @@ namespace SmartNews.ViewModels
             });
             list.Add(new TabBarItemModel()
             {
+                TitleBar = "cafebiz-cn",
+                Url = "https://cafebiz.vn/cong-nghe.rss",
+                ItemColor = Color.MediumOrchid
+            });
+            list.Add(new TabBarItemModel()
+            {
+                TitleBar = "cafebiz-kd",
+                Url = "https://cafebiz.vn/cau-chuyen-kinh-doanh.rss",
+                ItemColor = Color.LightCoral
+            });
+            list.Add(new TabBarItemModel()
+            {
+                TitleBar = "vnreview.vn",
+                Url = "https://vnreview.vn/feed/-/rss/home",
+                ItemColor = Color.LightSkyBlue
+            });
+            list.Add(new TabBarItemModel()
+            {
+                TitleBar = "soha.vn",
+                Url = "https://soha.vn/kinh-doanh.rss",
+                ItemColor = Color.Orange
+            });
+            list.Add(new TabBarItemModel()
+            {
                 TitleBar = "dantri.com.vn",
                 Url = "https://dantri.com.vn/trangchu.rss",
-                ItemColor = Color.MediumOrchid
+                ItemColor = Color.Turquoise
             });
 
             return list.ToObservableCollection();
@@ -93,48 +117,48 @@ namespace SmartNews.ViewModels
             {
                 try
                 {
-                        // Download XML.
-                        Stream stream = request.EndGetResponse(args).GetResponseStream();
+                    // Download XML.
+                    Stream stream = request.EndGetResponse(args).GetResponseStream();
                     StreamReader reader = new StreamReader(stream);
                     string xml = reader.ReadToEnd();
 
-                        // Parse XML to extract data from RSS feed.
-                        XDocument doc = XDocument.Parse(xml);
+                    // Parse XML to extract data from RSS feed.
+                    XDocument doc = XDocument.Parse(xml);
                     XElement rss = doc.Element(XName.Get("rss"));
                     XElement channel = rss.Element(XName.Get("channel"));
 
-                        // Set Title property.
-                        Title = channel.Element(XName.Get("title")).Value;
+                    // Set Title property.
+                    Title = channel.Element(XName.Get("title")).Value;
 
-                        // Set Items property.
-                        List<RSSFeedItem> list =
-                        channel.Elements(XName.Get("item")).Select((XElement element) =>
+                    // Set Items property.
+                    List<RSSFeedItem> list =
+                    channel.Elements(XName.Get("item")).Select((XElement element) =>
+                    {
+                        var desciption = element.Element(XName.Get("description"));
+                        //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
+                        var result = new RSSFeedItem();
+                        result.Title = element.Element(XName.Get("title")).Value;
+                        result.Description = desciption.Value;
+                        result.Link = element.Element(XName.Get("link")).Value;
+                        result.PubDate = element.Element(XName.Get("pubDate")).Value;
+                        #region get images form description
+                        Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
+                        MatchCollection mactches = regx.Matches(desciption.ToString());
+                        if (mactches.Count > 0)
                         {
-                            var desciption = element.Element(XName.Get("description"));
-                                //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
-                                var result = new RSSFeedItem();
-                            result.Title = element.Element(XName.Get("title")).Value;
-                            result.Description = desciption.Value;
-                            result.Link = element.Element(XName.Get("link")).Value;
-                            result.PubDate = element.Element(XName.Get("pubDate")).Value;
-                                #region get images form description
-                                Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
-                            MatchCollection mactches = regx.Matches(desciption.ToString());
-                            if (mactches.Count > 0)
+                            foreach (var urlImage in mactches)
                             {
-                                foreach (var urlImage in mactches)
-                                {
-                                    result.Thumbnail = urlImage.ToString();
-                                }
+                                result.Thumbnail = urlImage.ToString();
                             }
-                            else
-                            {
-                                result.Thumbnail = "";
-                            }
-                                #endregion
-                                return result;
+                        }
+                        else
+                        {
+                            result.Thumbnail = "";
+                        }
+                        #endregion
+                        return result;
 
-                        }).ToList();
+                    }).ToList();
                     var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
                     try
                     {
@@ -152,8 +176,8 @@ namespace SmartNews.ViewModels
                         throw ex;
                     }
 
-                        // Set IsRefreshing to false to stop the 'wait' icon.
-                        IsRefreshing = false;
+                    // Set IsRefreshing to false to stop the 'wait' icon.
+                    IsRefreshing = false;
                 }
                 catch (Exception)
                 {
