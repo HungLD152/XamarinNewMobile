@@ -13,5 +13,20 @@ namespace SmartNews.Views
             InitializeComponent();
             webViewDetail.Source = url;
         }
+
+        void OnBackButtonClicked(object sender, EventArgs args)
+        {
+            webViewDetail.GoBack();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (webViewDetail.CanGoBack)
+            {
+                webViewDetail.GoBack();
+                return true;
+            }
+            else return base.OnBackButtonPressed();
+        }
     }
 }
