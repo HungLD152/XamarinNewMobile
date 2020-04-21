@@ -7,12 +7,11 @@ namespace SmartNews.Views
 {
     public partial class RssDetailsPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
         public string Link { get; set; }
-        public RssDetailsPage(ItemDetailViewModel viewModel)
+        public RssDetailsPage(string url)
         {
             InitializeComponent();
-            BindingContext = this.viewModel = viewModel;
+            webViewDetail.Source = url;
         }
     }
 }

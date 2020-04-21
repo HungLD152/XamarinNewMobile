@@ -6,7 +6,7 @@
             mc:Ignorable="d" xmlns:views="clr-namespace:SmartNews.Views" x:Class="SmartNews.Views.MainPage"
             NavigationPage.HasNavigationBar="False">
     <TabbedPage.Children>
-        <NavigationPage Title="Home" BarTextColor="White">
+        <NavigationPage Title="Home">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png" />

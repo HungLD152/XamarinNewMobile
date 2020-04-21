@@ -18,32 +18,28 @@ namespace SmartNews.Views
             InitializeComponent();
             rssItem = new RSSFeedItem();
             BindingContext = viewModel;
-            if (!string.IsNullOrEmpty(Url))
-            {
-                viewModel.Url = Url;
-                viewModel.LoadRssFeed();
-            }
+            viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
+            viewModel.LoadRssFeed();
             TabBar.OnTabBarClicked += TabBar_OnTabItemClicked;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            var safeInsets = On<iOS>().SafeAreaInsets();
-            safeInsets.Left = 0;
-            Padding = safeInsets;
-            viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
-            viewModel.LoadRssFeed();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    var safeInsets = On<iOS>().SafeAreaInsets();
+        //    safeInsets.Left = 0;
+        //    Padding = safeInsets;
+        //    viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
+        //    viewModel.LoadRssFeed();
+        //}
 
         private void TabBar_OnTabItemClicked(object sender, string e)
         {
-            //TabBar.BackgroundColor = Color.Red;
             viewModel.Url = e;
             viewModel.LoadRssFeed();
         }
 
-        void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (args.SelectedItem != null)
             {
@@ -55,11 +51,12 @@ namespace SmartNews.Views
 
                 // For iOS 9, a NSAppTransportSecurity key was added to 
                 //  Info.plist to allow accesses to EarthObservatory.nasa.gov sites.
-                webView.Source = rssItem.Link;
+                //webView.Source = rssItem.Link;
 
+                await Navigation.PushAsync(new RssDetailsPage(rssItem.Link));
                 // Hide and make visible.
-                ShowData.IsVisible = false;
-                webLayout.IsVisible = true;
+                //ShowData.IsVisible = false;
+                //webLayout.IsVisible = true;
             }
         }
 
@@ -72,7 +69,7 @@ namespace SmartNews.Views
         void OnBackButtonClicked(object sender, EventArgs args)
         {
             // Hide and make visible.
-            webLayout.IsVisible = false;
+            //webLayout.IsVisible = false;
             ShowData.IsVisible = true;
         }
     }

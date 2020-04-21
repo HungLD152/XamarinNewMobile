@@ -22,7 +22,7 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout HorizontalOptions="FillAndExpand">
                                 <Label Text="{Binding Title}" FontAttributes="Bold"  TextColor="#333333" LineBreakMode="WordWrap" />
-                                <Label Text="{Binding DecoPubDate}" TextColor="Gray" HorizontalOptions="EndAndExpand"  />
+                                <Label Text="{Binding DecoPubDate}" TextColor="Gray" HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                         </StackLayout>
                     </yummy:PancakeView>
@@ -65,7 +65,7 @@
                             HasUnevenRows="True">
             </ListView>
         </StackLayout>
-        <StackLayout x:Name="webLayout"
+        <!--<StackLayout x:Name="webLayout"
                             IsVisible="False">
 
             <WebView x:Name="webView"  
@@ -74,6 +74,6 @@
             <Button Text="&lt; Back to List"
                         HorizontalOptions="Center"
                         Clicked="OnBackButtonClicked" />
-        </StackLayout>
+        </StackLayout>-->
     </Grid>
 </ContentPage>
