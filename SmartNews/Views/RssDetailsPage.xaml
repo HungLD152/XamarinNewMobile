@@ -4,15 +4,20 @@
              x:Class="SmartNews.Views.RssDetailsPage">
     <ContentPage.Content>
         <StackLayout x:Name="Detail" >
+            <Label x:Name="labelLoading" Text="Loading..." HorizontalOptions="Center" IsVisible="false"/>
             <WebView x:Name="webViewDetail"
-                       VerticalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Navigated="webviewNavigated"
+                     Navigating="webviewNavigating"
                      HorizontalOptions="FillAndExpand"/>
-            <Button Text="&lt; Back to List"
-                        HorizontalOptions="Center"
+            <StackLayout Orientation="Horizontal" HeightRequest="35" Margin="5,0,5,0">
+                <ImageButton Source="back.png"
+                        HorizontalOptions="StartAndExpand"
                         Clicked="OnBackButtonClicked" />
-            <Button Text="&lt; Forward"
-                        HorizontalOptions="End"
+                <ImageButton Source="next.png"
+                        HorizontalOptions="EndAndExpand"
                         Clicked="OnForwardButton_Clicked" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

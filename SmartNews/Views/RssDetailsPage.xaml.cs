@@ -36,5 +36,15 @@ namespace SmartNews.Views
                 webViewDetail.GoForward();
             }
         }
+
+        void webviewNavigating(object sender, WebNavigatingEventArgs e)
+        {
+            labelLoading.IsVisible = true;
+        }
+
+        void webviewNavigated(object sender, WebNavigatedEventArgs e)
+        {
+            labelLoading.IsVisible = false;
+        }
     }
 }
