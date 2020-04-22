@@ -46,25 +46,24 @@
                    InvalidTemplate="{StaticResource invalidImageTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
-            <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
+    <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
+        <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
                         HorizontalOptions="Fill"
                         VerticalOptions="CenterAndExpand"
                         FontAttributes="Italic"
                         SearchButtonPressed="OnSearchButtonPressed"/>-->
-            <ListView x:Name="listView"
+        <ListView x:Name="listView"
                             ItemsSource="{Binding Items}"
                             IsPullToRefreshEnabled="True"
                             ItemSelected="OnListViewItemSelected"
                             VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
                             RefreshCommand="{Binding RefreshCommand}"
                             IsRefreshing="{Binding IsRefreshing}"
                             ItemTemplate="{StaticResource rssFeedTemplateSelector}"
                             HasUnevenRows="True">
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+        </ListView>
+    </StackLayout>
 </ContentPage>
