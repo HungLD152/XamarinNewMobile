@@ -32,6 +32,17 @@ namespace SmartNews.Views
         public SettingPage()
         {
             InitializeComponent();
+            foreach (var fontattr in fontAttribute.Keys)
+            {
+                fontPiker.Items.Add(fontattr);
+            }
+
+            foreach (var fontsize in fontSize.Keys)
+            {
+                fontsizePiker.Items.Add(fontsize);
+            }
+
+
         }
     }
 }

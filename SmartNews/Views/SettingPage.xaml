@@ -3,17 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNews.Views.SettingPage">
-     <ContentPage.Padding>
+    <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="5, 20, 5, 0" />
             <On Platform="Android, UWP" Value="10, 0" />
         </OnPlatform>
     </ContentPage.Padding>
- <StackLayout>
-     <Picker x:Name="fontPiker" Title="Select font">
+    <StackLayout>
+        <Label Text="Font"/>
+        <Label Text="Font Atribute"/>
+        <Picker x:Name="fontPiker" Title="Select font">
+            <Picker.Items/>
+        </Picker>
 
-     </Picker>
-     <Label Text="Font"/>
-     <Label Text="Font family"/>
- </StackLayout>
+        <Label Text="Font size" FontFamily=""/>
+        <Picker x:Name="fontsizePiker" Title="Select fontsize">
+            <Picker.Items/>
+        </Picker>
+    </StackLayout>
 </ContentPage>

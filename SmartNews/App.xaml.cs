@@ -12,7 +12,7 @@ namespace SmartNews
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPageCustom());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
