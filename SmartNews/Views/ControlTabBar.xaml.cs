@@ -66,7 +66,7 @@ namespace SmartNews.Views
             {
                 senderObj.Margin = new Thickness(0, 7, 0, 1);
                 senderObj.Padding = new Thickness(0, 0, 0, 1);
-                senderObj.HeightRequest = 35;
+                senderObj.HeightRequest = 40;
                 BottomColor.BackgroundColor = (senderObj.BindingContext as TabBarItemModel).ItemColor;
                 BottomColor.Margin = new Thickness(0, -10, 0, 0);
             }

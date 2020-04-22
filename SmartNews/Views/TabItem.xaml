@@ -10,8 +10,8 @@
                 <Setter Property="TextColor" Value="#FFFFFF"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="LineBreakMode" Value="WordWrap"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="HeightRequest" Value="31"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="HeightRequest" Value="38"/>
                 <Setter Property="Margin" Value="0,1,0,0"/>
             </Style>
         </ResourceDictionary>
