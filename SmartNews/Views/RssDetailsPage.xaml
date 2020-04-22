@@ -14,6 +14,9 @@
                 <ImageButton Source="back.png"
                         HorizontalOptions="StartAndExpand"
                         Clicked="OnBackButtonClicked" />
+                <ImageButton Source="refresh.png"
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="OnRefreshButtonClicked" />
                 <ImageButton Source="next.png"
                         HorizontalOptions="EndAndExpand"
                         Clicked="OnForwardButton_Clicked" />

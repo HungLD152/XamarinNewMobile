@@ -14,19 +14,16 @@ namespace SmartNews.Views
             webViewDetail.Source = url;
         }
 
-        void OnBackButtonClicked(object sender, EventArgs args)
-        {
-            webViewDetail.GoBack();
-        }
-
-        protected override bool OnBackButtonPressed()
+        async void OnBackButtonClicked(object sender, EventArgs args)
         {
             if (webViewDetail.CanGoBack)
             {
                 webViewDetail.GoBack();
-                return true;
             }
-            else return base.OnBackButtonPressed();
+            else
+            {
+                await Navigation.PopAsync();
+            }
         }
 
         private void OnForwardButton_Clicked(object sender, EventArgs e)
@@ -35,6 +32,11 @@ namespace SmartNews.Views
             {
                 webViewDetail.GoForward();
             }
+        }
+
+        private void OnRefreshButtonClicked(object sender, EventArgs e)
+        {
+            webViewDetail.Reload();
         }
 
         void webviewNavigating(object sender, WebNavigatingEventArgs e)

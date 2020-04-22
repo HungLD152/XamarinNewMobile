@@ -122,6 +122,7 @@
     <BundleResource Include="Resources\icon-setting.png" />
     <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\next.png" />
+    <BundleResource Include="Resources\refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

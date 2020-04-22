@@ -46,8 +46,8 @@
                    InvalidTemplate="{StaticResource invalidImageTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid>
-        <StackLayout x:Name="ShowData">
+    <ContentPage.Content>
+        <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
             <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
@@ -59,21 +59,12 @@
                             ItemsSource="{Binding Items}"
                             IsPullToRefreshEnabled="True"
                             ItemSelected="OnListViewItemSelected"
+                            VerticalOptions="FillAndExpand"
                             RefreshCommand="{Binding RefreshCommand}"
                             IsRefreshing="{Binding IsRefreshing}"
                             ItemTemplate="{StaticResource rssFeedTemplateSelector}"
                             HasUnevenRows="True">
             </ListView>
         </StackLayout>
-        <!--<StackLayout x:Name="webLayout"
-                            IsVisible="False">
-
-            <WebView x:Name="webView"  
-                            VerticalOptions="FillAndExpand" />
-
-            <Button Text="&lt; Back to List"
-                        HorizontalOptions="Center"
-                        Clicked="OnBackButtonClicked" />
-        </StackLayout>-->
-    </Grid>
+    </ContentPage.Content>
 </ContentPage>
