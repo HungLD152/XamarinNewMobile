@@ -18,10 +18,10 @@
         <ResourceDictionary>
             <DataTemplate x:Key="validImageTemplate">
                 <ViewCell>
-                    <yummy:PancakeView BackgroundGradientStartColor="#F9FEF7" BackgroundGradientEndColor="#F9FEF7" BackgroundGradientAngle="10" Margin="0,5,0,5" CornerRadius="5" IsClippedToBounds="true" HorizontalOptions="FillAndExpand">
+                    <yummy:PancakeView BackgroundGradientStartColor="{DynamicResource backgroundColor}" BackgroundGradientEndColor="{DynamicResource backgroundColor}" BackgroundGradientAngle="10" Margin="0,5,0,5" CornerRadius="5" IsClippedToBounds="true" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Title}" FontAttributes="Bold"  TextColor="#333333" LineBreakMode="WordWrap" />
+                                <Label Text="{Binding Title}" Style="{DynamicResource labelStyle}" TextColor="{DynamicResource textColor}" LineBreakMode="WordWrap" />
                                 <Label Text="{Binding DecoPubDate}" TextColor="Gray" HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                         </StackLayout>
@@ -30,10 +30,10 @@
             </DataTemplate>
             <DataTemplate x:Key="invalidImageTemplate">
                 <ViewCell>
-                    <yummy:PancakeView BackgroundGradientStartColor="#F9FEF7" BackgroundGradientEndColor="#F9FEF7" BackgroundGradientAngle="10" Margin="0,5,0,5" CornerRadius="5" IsClippedToBounds="true" HorizontalOptions="FillAndExpand">
+                    <yummy:PancakeView BackgroundGradientStartColor="{DynamicResource backgroundColor}" BackgroundGradientEndColor="{DynamicResource backgroundColor}" BackgroundGradientAngle="10" Margin="0,5,0,5" CornerRadius="5" IsClippedToBounds="true" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout>
-                                <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="#333333" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding Title}" Style="{DynamicResource labelStyle}" TextColor="{DynamicResource textColor}" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
                                 <Label Text="{Binding DecoPubDate}" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"/>
                             </StackLayout>
                             <Image Source="{Binding Thumbnail}" WidthRequest="150" HeightRequest="120" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"/>
@@ -46,7 +46,7 @@
                    InvalidTemplate="{StaticResource invalidImageTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource backgroundColor}">
         <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
         <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
@@ -54,7 +54,7 @@
                         VerticalOptions="CenterAndExpand"
                         FontAttributes="Italic"
                         SearchButtonPressed="OnSearchButtonPressed"/>-->
-        <ListView x:Name="listView"
+        <ListView x:Name="listView" BackgroundColor="{DynamicResource backgroundColor}"
                             ItemsSource="{Binding Items}"
                             IsPullToRefreshEnabled="True"
                             ItemSelected="OnListViewItemSelected"

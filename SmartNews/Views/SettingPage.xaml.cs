@@ -1,48 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SmartNews.ViewModels;
 using Xamarin.Forms;
 
 namespace SmartNews.Views
 {
     public partial class SettingPage : ContentPage
     {
-        Dictionary<string, FontAttributes> fontAttribute = new Dictionary<string, FontAttributes>
-        {
-            {"Normal", FontAttributes.None },
-            {"Bold", FontAttributes.Bold },
-            {"Italic", FontAttributes.Italic },
-        };
-
-        Dictionary<string, NamedSize> fontSize = new Dictionary<string, NamedSize>
-        {
-            {"default" , NamedSize.Default },
-            {"Small" , NamedSize.Small },
-            {"Medium" , NamedSize.Medium },
-            {"Large" , NamedSize.Large },
-        };
-
-        Dictionary<string, NamedSize> nameToFont = new Dictionary<string, NamedSize>
-        {
-            {"default" , NamedSize.Default },
-            {"Small" , NamedSize.Small },
-            {"Medium" , NamedSize.Medium },
-            {"Large" , NamedSize.Large },
-        };
+        public IList<string> ItemfontFamily = new List<string>() { "Arial", "Times New Roman", "UTM Avo Regular", "UTM AvoBold Regular", "UTM Beautiful Caps Regular", "UTM Diana Regular", "UTM Sarah Regular" };
+        public IList<int> ItemfontSize = new List<int>() { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
         public SettingPage()
         {
             InitializeComponent();
-            foreach (var fontattr in fontAttribute.Keys)
+            foreach (var item in ItemfontSize)
             {
-                fontPiker.Items.Add(fontattr);
+                fontsizePiker.Items.Add(item.ToString());
             }
-
-            foreach (var fontsize in fontSize.Keys)
+            foreach (var item1 in ItemfontFamily)
             {
-                fontsizePiker.Items.Add(fontsize);
+                fontNamePiker.Items.Add(item1);
             }
+        }
 
+        void OnToggled(object sender, ToggledEventArgs e)
+        {
+            if (e.Value)
+            {
+                Application.Current.Resources["backgroundColor"] = Color.FromHex("#333333");
+                Application.Current.Resources["textColor"] = Color.FromHex("#FFFFFF");
+            }
+            else
+            {
+                Application.Current.Resources["backgroundColor"] = Color.FromHex("#FFFFFF");
+                Application.Current.Resources["textColor"] = Color.FromHex("#333333");
+            }
+        }
 
+        void fontFamily_SelectedIndexChanged(object sender, EventArgs args)
+        {
+            Application.Current.Resources["fontFamily"] = fontNamePiker.SelectedItem;
+        }
+        void fontsize_SelectedIndexChanged(object sender, EventArgs args)
+        {
+            Application.Current.Resources["InputFontsize"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
         }
     }
 }

@@ -13,6 +13,7 @@
                 <Setter Property="FontSize" Value="17"/>
                 <Setter Property="HeightRequest" Value="32"/>
                 <Setter Property="Margin" Value="0,3,0,0"/>
+                <Setter Property="FontFamily" Value="{DynamicResource fontFamily}"/>
             </Style>
         </ResourceDictionary>
     </StackLayout.Resources>

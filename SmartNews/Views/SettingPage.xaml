@@ -1,24 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             NavigationPage.HasNavigationBar="False"
              x:Class="SmartNews.Views.SettingPage">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="5, 20, 5, 0" />
-            <On Platform="Android, UWP" Value="10, 0" />
-        </OnPlatform>
-    </ContentPage.Padding>
-    <StackLayout>
-        <Label Text="Font"/>
-        <Label Text="Font Atribute"/>
-        <Picker x:Name="fontPiker" Title="Select font">
-            <Picker.Items/>
-        </Picker>
-
-        <Label Text="Font size" FontFamily=""/>
-        <Picker x:Name="fontsizePiker" Title="Select fontsize">
-            <Picker.Items/>
-        </Picker>
+    <StackLayout BackgroundColor="{DynamicResource backgroundColor}">
+        <Label Text="Setting" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="{DynamicResource textColor}"/>
+        <Label Text="Font Family" TextColor="{DynamicResource textColor}"/>
+        <Picker x:Name="fontNamePiker" Title="Select FontFamily"
+                TextColor="{DynamicResource textColor}"
+                SelectedIndexChanged="fontFamily_SelectedIndexChanged"
+                BackgroundColor="{DynamicResource backgroundColor}"/>
+        <Label Text="Font size" TextColor="{DynamicResource textColor}"/>
+        <Picker x:Name="fontsizePiker" Title="Select Fontsize"
+                TextColor="{DynamicResource textColor}"
+                SelectedIndexChanged="fontsize_SelectedIndexChanged"
+                BackgroundColor="{DynamicResource backgroundColor}"/>
+        <Label Text="Dark Mode" TextColor="{DynamicResource textColor}"/>
+        <Switch x:Name="checkFs" IsToggled="False" Toggled="OnToggled" />
     </StackLayout>
 </ContentPage>

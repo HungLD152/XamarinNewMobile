@@ -123,6 +123,11 @@
     <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\next.png" />
     <BundleResource Include="Resources\refresh.png" />
+    <BundleResource Include="Resources\UTM Avo.ttf" />
+    <BundleResource Include="Resources\UTM AvoBold.ttf" />
+    <BundleResource Include="Resources\UTM Beautiful Caps.ttf" />
+    <BundleResource Include="Resources\UTM Diana.ttf" />
+    <BundleResource Include="Resources\UTM Sarah.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

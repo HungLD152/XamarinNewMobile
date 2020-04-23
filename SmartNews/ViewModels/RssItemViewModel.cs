@@ -96,9 +96,15 @@ namespace SmartNews.ViewModels
                 Url = "https://dantri.com.vn/trangchu.rss",
                 ItemColor = Color.Turquoise
             });
+            list.Add(new TabBarItemModel()
+            {
+                TitleBar = "Setting",
+                Url = "",
+                ItemColor = Color.Red
+            });
 
             return list.ToObservableCollection();
-        }
+        }        
 
         #region property RefreshCommand
         public ICommand RefreshCommand { private set; get; }
@@ -112,81 +118,90 @@ namespace SmartNews.ViewModels
         #region Load LoadRssFeed url rss
         public void LoadRssFeed()
         {
-            WebRequest request = WebRequest.Create(Url);
-            request.BeginGetResponse((args) =>
+            if (!string.IsNullOrEmpty(Url))
             {
-                try
+                WebRequest request = WebRequest.Create(Url);
+                request.BeginGetResponse((args) =>
                 {
-                    // Download XML.
-                    Stream stream = request.EndGetResponse(args).GetResponseStream();
-                    StreamReader reader = new StreamReader(stream);
-                    string xml = reader.ReadToEnd();
-
-                    // Parse XML to extract data from RSS feed.
-                    XDocument doc = XDocument.Parse(xml);
-                    XElement rss = doc.Element(XName.Get("rss"));
-                    XElement channel = rss.Element(XName.Get("channel"));
-
-                    // Set Title property.
-                    Title = channel.Element(XName.Get("title")).Value;
-
-                    // Set Items property.
-                    List<RSSFeedItem> list =
-                    channel.Elements(XName.Get("item")).Select((XElement element) =>
+                    try
                     {
-                        var desciption = element.Element(XName.Get("description"));
+                        // Download XML.
+                        Stream stream = request.EndGetResponse(args).GetResponseStream();
+                        StreamReader reader = new StreamReader(stream);
+                        string xml = reader.ReadToEnd();
+
+                        // Parse XML to extract data from RSS feed.
+                        XDocument doc = XDocument.Parse(xml);
+                        XElement rss = doc.Element(XName.Get("rss"));
+                        XElement channel = rss.Element(XName.Get("channel"));
+
+                        // Set Title property.
+                        Title = channel.Element(XName.Get("title")).Value;
+
+                        // Set Items property.
+                        List<RSSFeedItem> list =
+                        channel.Elements(XName.Get("item")).Select((XElement element) =>
+                        {
+                            var desciption = element.Element(XName.Get("description"));
                         //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
                         var result = new RSSFeedItem();
-                        result.Title = element.Element(XName.Get("title")).Value;
-                        result.Description = desciption.Value;
-                        result.Link = element.Element(XName.Get("link")).Value;
-                        result.PubDate = element.Element(XName.Get("pubDate")).Value;
+                            result.Title = element.Element(XName.Get("title")).Value;
+                            result.Description = desciption.Value;
+                            result.Link = element.Element(XName.Get("link")).Value;
+                            result.PubDate = element.Element(XName.Get("pubDate")).Value;
                         #region get images form description
                         Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
-                        MatchCollection mactches = regx.Matches(desciption.ToString());
-                        if (mactches.Count > 0)
-                        {
-                            foreach (var urlImage in mactches)
+                            MatchCollection mactches = regx.Matches(desciption.ToString());
+                            if (mactches.Count > 0)
                             {
-                                result.Thumbnail = urlImage.ToString();
+                                foreach (var urlImage in mactches)
+                                {
+                                    result.Thumbnail = urlImage.ToString();
+                                }
                             }
-                        }
-                        else
-                        {
-                            result.Thumbnail = "";
-                        }
+                            else
+                            {
+                                result.Thumbnail = "";
+                            }
                         #endregion
                         return result;
 
-                    }).ToList();
-                    var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(searchText))
+                        }).ToList();
+                        var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
+                        try
                         {
-                            Items = lstItem.Where(s => s.Title.ToLower().Contains(searchText.ToLower())).ToList().ToObservableCollection();
+                            if (!string.IsNullOrEmpty(searchText))
+                            {
+                                Items = lstItem.Where(s => s.Title.ToLower().Contains(searchText.ToLower())).ToList().ToObservableCollection();
+                            }
+                            else
+                            {
+                                Items = lstItem.ToObservableCollection();
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            Items = lstItem.ToObservableCollection();
+                            throw ex;
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
 
-                    // Set IsRefreshing to false to stop the 'wait' icon.
-                    IsRefreshing = false;
-                }
-                catch (Exception)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
+                        // Set IsRefreshing to false to stop the 'wait' icon.
+                        IsRefreshing = false;
+                    }
+                    catch (Exception)
                     {
-                        Application.Current.MainPage.DisplayAlert("Server Error", "Not Connected", "OK");
-                    });
-                }
-            }, null);
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            Application.Current.MainPage.DisplayAlert("Server Error", "Not Connected", "OK");
+                        });
+                    }
+                }, null);
+            }
+            else
+            {
+                Application.Current.MainPage.Navigation.PushAsync(new SettingPage());
+            }
+         
+            
         }
     }
     #endregion
