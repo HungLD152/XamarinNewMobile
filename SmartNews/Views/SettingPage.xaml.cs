@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using SmartNews.ViewModels;
 using Xamarin.Forms;
 
 namespace SmartNews.Views
 {
     public partial class SettingPage : ContentPage
     {
-        public IList<string> ItemfontFamily = new List<string>() { "Arial", "Times New Roman", "UTM Avo Regular", "UTM AvoBold Regular", "UTM Beautiful Caps Regular", "UTM Diana Regular", "UTM Sarah Regular" };
+        public IList<string> ItemfontFamily = new List<string>() { "Arial", "Times New Roman", "UTM Avo", "UTM AvoBold", "UTM Beautiful Caps", "UTM Diana", "UTM Sarah" };
         public IList<int> ItemfontSize = new List<int>() { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
         public SettingPage()
         {
@@ -20,10 +19,35 @@ namespace SmartNews.Views
             {
                 fontNamePiker.Items.Add(item1);
             }
+            btn_GetItem();
+        }
+
+        void btn_GetItem()
+        {
+            try
+            {
+                if (fontNamePiker.SelectedItem != null || fontsizePiker.SelectedItem != null || !checkFs.IsToggled)
+                {
+                    fontNamePiker.SelectedItem = Application.Current.Properties["Family"].ToString();
+                    fontsizePiker.SelectedItem = Application.Current.Properties["Size"].ToString();
+                    checkFs.IsToggled = Convert.ToBoolean(Application.Current.Properties["Mode"].ToString());
+                }
+                else
+                {
+                    fontNamePiker.SelectedItem = "Arial";
+                    fontsizePiker.SelectedItem = "16";
+                    checkFs.IsToggled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Data Storage Error", ex.Message, "Ok");
+            }
         }
 
         void OnToggled(object sender, ToggledEventArgs e)
         {
+            Application.Current.Properties["Mode"] = checkFs.IsToggled;
             if (e.Value)
             {
                 Application.Current.Resources["backgroundColor"] = Color.FromHex("#333333");
@@ -39,10 +63,13 @@ namespace SmartNews.Views
         void fontFamily_SelectedIndexChanged(object sender, EventArgs args)
         {
             Application.Current.Resources["fontFamily"] = fontNamePiker.SelectedItem;
+            Application.Current.Properties["Family"] = fontNamePiker.SelectedItem;
         }
+
         void fontsize_SelectedIndexChanged(object sender, EventArgs args)
         {
             Application.Current.Resources["InputFontsize"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
+            Application.Current.Properties["Size"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
         }
     }
 }
