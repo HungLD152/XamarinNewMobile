@@ -119,7 +119,7 @@
     <AndroidAsset Include="Assets\UTM Sarah.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon-setting2.png" />
+    <AndroidResource Include="Resources\drawable\settingHome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
