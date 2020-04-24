@@ -2,6 +2,6 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SmartNews.Views.SettingView">
        
         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="0,5,10,-5">
-             <ImageButton Source="icon-setting.png" WidthRequest="20" Clicked="OnSettingButtonPressed"/>
+             <ImageButton Source="icon-setting2.png" WidthRequest="20" Clicked="OnSettingButtonPressed"/>
         </StackLayout>
 </ContentView>
