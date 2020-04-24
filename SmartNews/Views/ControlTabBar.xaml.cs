@@ -66,9 +66,9 @@ namespace SmartNews.Views
             {
                 senderObj.Margin = new Thickness(0, 5, 0, 1);
                 senderObj.Padding = new Thickness(0, 0, 0, 1);
-                senderObj.HeightRequest = 34;
+                senderObj.HeightRequest = 38;
                 BottomColor.BackgroundColor = (senderObj.BindingContext as TabBarItemModel).ItemColor;
-                BottomColor.Margin = new Thickness(0, -15, 0, 0);
+                BottomColor.Margin = new Thickness(0, -10, 0, 0);
             }
             //scroll position
             bool animate = true;

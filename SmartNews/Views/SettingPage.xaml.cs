@@ -19,10 +19,10 @@ namespace SmartNews.Views
             {
                 fontNamePiker.Items.Add(item1);
             }
-            btn_GetItem();
+            UpdateStyleItem();
         }
 
-        void btn_GetItem()
+        void UpdateStyleItem()
         {
             try
             {
