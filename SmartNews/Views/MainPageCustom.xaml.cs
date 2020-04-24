@@ -11,27 +11,18 @@ namespace SmartNews.Views
     public partial class MainPageCustom : ContentPage
     {
         private RssItemViewModel viewModel = new RssItemViewModel();
-        public string Url { get; set; }
         RSSFeedItem rssItem;
         public MainPageCustom()
         {
             InitializeComponent();
             rssItem = new RSSFeedItem();
+            var setting = new SettingPage();
             viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
             viewModel.LoadRssFeed();
             BindingContext = viewModel;
+            setting.UpdateStyleItem();
             TabBar.OnTabBarClicked += TabBar_OnTabItemClicked;
         }
-
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    var safeInsets = On<iOS>().SafeAreaInsets();
-        //    safeInsets.Left = 0;
-        //    Padding = safeInsets;
-        //    viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
-        //    viewModel.LoadRssFeed();
-        //}
 
         private void TabBar_OnTabItemClicked(object sender, string e)
         {
@@ -59,7 +50,6 @@ namespace SmartNews.Views
                 //webLayout.IsVisible = true;
             }
         }
-
 
         void OnSearchButtonPressed(object sender, EventArgs args)
         {

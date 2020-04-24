@@ -22,7 +22,7 @@ namespace SmartNews.Views
             UpdateStyleItem();
         }
 
-        void UpdateStyleItem()
+        public void UpdateStyleItem()
         {
             try
             {
@@ -39,9 +39,11 @@ namespace SmartNews.Views
                     checkFs.IsToggled = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                DisplayAlert("Data Storage Error", ex.Message, "Ok");
+                fontNamePiker.SelectedItem = "Arial";
+                fontsizePiker.SelectedItem = "16";
+                checkFs.IsToggled = false;
             }
         }
 

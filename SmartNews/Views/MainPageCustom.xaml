@@ -47,6 +47,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource backgroundColor}">
+        <tabview:SettingView/>
         <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
         <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."

@@ -96,15 +96,9 @@ namespace SmartNews.ViewModels
                 Url = "https://dantri.com.vn/trangchu.rss",
                 ItemColor = Color.Turquoise
             });
-            list.Add(new TabBarItemModel()
-            {
-                TitleBar = "Setting",
-                Url = "",
-                ItemColor = Color.Red
-            });
 
             return list.ToObservableCollection();
-        }        
+        }
 
         #region property RefreshCommand
         public ICommand RefreshCommand { private set; get; }
@@ -143,14 +137,14 @@ namespace SmartNews.ViewModels
                         channel.Elements(XName.Get("item")).Select((XElement element) =>
                         {
                             var desciption = element.Element(XName.Get("description"));
-                        //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
-                        var result = new RSSFeedItem();
+                            //var image = desciption.Element(XName.Get("img")).Attribute("src").Value.ToString();
+                            var result = new RSSFeedItem();
                             result.Title = element.Element(XName.Get("title")).Value;
                             result.Description = desciption.Value;
                             result.Link = element.Element(XName.Get("link")).Value;
                             result.PubDate = element.Element(XName.Get("pubDate")).Value;
-                        #region get images form description
-                        Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
+                            #region get images form description
+                            Regex regx = new Regex("http(s?)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?.(?:jpg|bmp|gif|png)", RegexOptions.IgnoreCase);
                             MatchCollection mactches = regx.Matches(desciption.ToString());
                             if (mactches.Count > 0)
                             {
@@ -163,8 +157,8 @@ namespace SmartNews.ViewModels
                             {
                                 result.Thumbnail = "";
                             }
-                        #endregion
-                        return result;
+                            #endregion
+                            return result;
 
                         }).ToList();
                         var lstItem = list.OrderByDescending(s => s.PubDateTime).ToList();
@@ -198,10 +192,13 @@ namespace SmartNews.ViewModels
             }
             else
             {
-                Application.Current.MainPage.Navigation.PushAsync(new SettingPage());
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.DisplayAlert("Error", "Please check url no empty", "OK");
+                });
             }
-         
-            
+
+
         }
     }
     #endregion
