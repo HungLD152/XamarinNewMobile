@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartNews.Models;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -8,6 +9,8 @@ namespace SmartNews.Views
     {
         public IList<string> ItemfontFamily = new List<string>() { "Arial", "Times New Roman", "UTM Avo", "UTM AvoBold", "UTM Beautiful Caps", "UTM Diana", "UTM Sarah" };
         public IList<int> ItemfontSize = new List<int>() { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        INotificationManager notificationManager;
+        int notificationNumber = 0;
         public SettingPage()
         {
             InitializeComponent();
@@ -20,8 +23,36 @@ namespace SmartNews.Views
                 fontNamePiker.Items.Add(item1);
             }
             UpdateStyleItem();
+            notificationManager = DependencyService.Get<INotificationManager>();
+            notificationManager.NotificationReceived += (sender, EventArgs) =>
+            {
+                var evtData = (NotificationEventArgs)EventArgs;
+                ShowNotification(evtData.Title, evtData.Message);
+            };
         }
 
+        void OnScheduleClick(object sender, EventArgs e)
+        {
+            notificationNumber++;
+            string title = $"Local Notifications #{notificationNumber}";
+            string message = $"You have now received {notificationNumber} notifications!";
+            notificationManager.ScheduleNotification(title, message);
+        }
+
+        void ShowNotification(string title, string message)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                txtMessage.Text = $"Notification Received:\nTitle: {title}\nMessage: {message}";
+                //var msg = new Editor()
+                //{
+                //    Text = $"Notification Received:\nTitle: {title}\nMessage: {message}"
+                //};
+                //stackLayout.Children.Add(msg);
+            });
+        }
+
+        #region Setting FontSize, Font Family
         public void UpdateStyleItem()
         {
             try
@@ -73,5 +104,6 @@ namespace SmartNews.Views
             Application.Current.Resources["InputFontsize"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
             Application.Current.Properties["Size"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
         }
+        #endregion
     }
 }

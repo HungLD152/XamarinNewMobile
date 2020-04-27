@@ -30,5 +30,12 @@
             <Label x:Name="lblFontsize" Text="Size"/>
             <Label x:Name="IsDankmode" Text="Mode"/>
         </StackLayout>
+        <StackLayout x:Name="stackLayout">
+            <Editor x:Name="txtMessage" Text="Local Notifications on Adroid" HeightRequest="100"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Push" HorizontalOptions="StartAndExpand"/>
+                <Button Text="Local" Clicked="OnScheduleClick" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

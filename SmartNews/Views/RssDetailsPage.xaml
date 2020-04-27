@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SmartNews.Views.RssDetailsPage">
         <StackLayout x:Name="Detail" BackgroundColor="{DynamicResource backgrountColor}">
-            <Label x:Name="labelLoading" Text="Loading..." HorizontalOptions="Center" IsVisible="false"/>
+            <Label x:Name="labelLoading" Text="Loading..." HorizontalOptions="Center" IsVisible="True"/>
             <WebView x:Name="webViewDetail" BackgroundColor="{DynamicResource backgrountColor}"
                      VerticalOptions="FillAndExpand"
                      Navigated="webviewNavigated"

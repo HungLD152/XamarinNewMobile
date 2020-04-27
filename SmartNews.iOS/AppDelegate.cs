@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace SmartNews.iOS
 {
@@ -24,6 +25,9 @@ namespace SmartNews.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            // set a delegate to handle incoming notifications
+            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
 
             return base.FinishedLaunching(app, options);
         }
