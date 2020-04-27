@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="SmartNews.App">
     <Application.Resources>
-        <x:Int32 x:Key="InputFontsize">16</x:Int32>
-        <x:String x:Key="fontFamily">Arial</x:String>
-        <!--<x:String x:Key="InputFontsize">Small</x:String>-->
-        <!--<x:String x:Key="InputFontAttr">Bold</x:String>-->
         <ResourceDictionary>
             <Color x:Key="backgroundColor">#FFFFFF</Color>
             <Color x:Key="textColor">#333333</Color>
             <FontAttributes x:Key="InputFontAttr">Bold</FontAttributes>
-
+            <x:Int32 x:Key="InputFontsize">16</x:Int32>
+            <x:String x:Key="fontFamily">Arial</x:String>
             <Style x:Key="labelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="{DynamicResource InputFontsize}" />
-                <Setter Property="FontAttributes" Value="{DynamicResource InputFontAttr}" />
+                <Setter Property="FontSize" Value="{DynamicResource InputFontsize}"/>
+                <Setter Property="FontAttributes" Value="{DynamicResource InputFontAttr}"/>
                 <Setter Property="FontFamily" Value="{DynamicResource fontFamily}"/>
             </Style>
         </ResourceDictionary>

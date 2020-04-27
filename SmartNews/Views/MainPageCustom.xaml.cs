@@ -55,12 +55,5 @@ namespace SmartNews.Views
         {
             viewModel.LoadRssFeed();
         }
-
-        void OnBackButtonClicked(object sender, EventArgs args)
-        {
-            // Hide and make visible.
-            //webLayout.IsVisible = false;
-            ShowData.IsVisible = true;
-        }
     }
 }

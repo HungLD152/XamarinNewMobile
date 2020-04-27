@@ -41,12 +41,12 @@ namespace SmartNews.Views
 
         void webviewNavigating(object sender, WebNavigatingEventArgs e)
         {
-            labelLoading.IsVisible = true;
+            labelLoading.IsVisible = false;
         }
 
         void webviewNavigated(object sender, WebNavigatedEventArgs e)
         {
-            labelLoading.IsVisible = false;
+            labelLoading.IsVisible = true;
         }
     }
 }

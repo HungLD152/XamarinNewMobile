@@ -44,49 +44,49 @@ namespace SmartNews.ViewModels
             var list = new List<TabBarItemModel>();
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "24h.com.vn",
+                TitleBar = "24h.com",
                 Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss",
                 ItemColor = Color.LightCoral
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "tinhte.vn",
+                TitleBar = "Tinhte",
                 Url = "https://tinhte.vn/rss",
                 ItemColor = Color.Orange
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "thanhnien.vn",
+                TitleBar = "Thanhnien",
                 Url = "https://thanhnien.vn/rss/home.rss",
                 ItemColor = Color.Turquoise
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "trithuc.vn",
+                TitleBar = "Trithuc",
                 Url = "https://trithucvn.net/feed",
                 ItemColor = Color.LightSkyBlue
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "cafebiz-cn",
+                TitleBar = "Cafebiz-cn",
                 Url = "https://cafebiz.vn/cong-nghe.rss",
                 ItemColor = Color.MediumOrchid
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "cafebiz-kd",
+                TitleBar = "Cafebiz-kd",
                 Url = "https://cafebiz.vn/cau-chuyen-kinh-doanh.rss",
                 ItemColor = Color.LightCoral
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "vnreview.vn",
+                TitleBar = "Vnreview",
                 Url = "https://vnreview.vn/feed/-/rss/home",
                 ItemColor = Color.LightSkyBlue
             });
             list.Add(new TabBarItemModel()
             {
-                TitleBar = "soha.vn",
+                TitleBar = "Soha",
                 Url = "https://soha.vn/kinh-doanh.rss",
                 ItemColor = Color.Orange
             });

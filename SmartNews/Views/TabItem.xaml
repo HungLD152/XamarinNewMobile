@@ -19,7 +19,7 @@
     </StackLayout.Resources>
     <yummy:PancakeView BackgroundColor="{Binding ItemColor}" CornerRadius="4,4,0,0" IsClippedToBounds="true">
         <StackLayout HorizontalOptions="FillAndExpand" Padding="4,2,4,4">
-            <Label Text="{Binding TitleBar}" Style="{StaticResource buttonCss}" Padding="4,0,4,0">
+            <Label Text="{Binding TitleBar}" Style="{StaticResource buttonCss}" Padding="8,0,8,3">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnContentTapped" />
                 </Label.GestureRecognizers>
