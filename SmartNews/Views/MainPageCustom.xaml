@@ -52,6 +52,8 @@
             <SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
                         TextColor="{DynamicResource textColor}"
+                        PlaceholderColor="{DynamicResource textColor}"
+                        CancelButtonColor="{DynamicResource textColor}"
                         FontSize="{DynamicResource InputFontsize}"
                         FontFamily="{DynamicResource fontFamily}"
                         HorizontalOptions="Start"
