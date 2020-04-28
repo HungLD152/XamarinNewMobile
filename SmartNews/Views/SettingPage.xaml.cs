@@ -23,35 +23,18 @@ namespace SmartNews.Views
                 fontNamePiker.Items.Add(item1);
             }
             UpdateStyleItem();
-            //notification
-            //notificationManager = DependencyService.Get<INotificationManager>();
-            //notificationManager.NotificationReceived += (sender, EventArgs) =>
-            //{
-            //    var evtData = (NotificationEventArgs)EventArgs;
-            //    ShowNotification(evtData.Title, evtData.Message);
-            //};
         }
 
         void OnScheduleClick(object sender, EventArgs e)
         {
-            //notificationNumber++;
-            //string title = $"Local Notifications #{notificationNumber}";
-            //string message = $"You have now received {notificationNumber} notifications!";
-            //notificationManager.ScheduleNotification(title, message);
-            DependencyService.Get<INotificationManager>().ReceiveNotification("Local Notification", txtMessage.Text);
-        }
-
-        void ShowNotification(string title, string message)
-        {
-            Device.BeginInvokeOnMainThread(() =>
+            if (!string.IsNullOrEmpty(txtMessage.Text))
             {
-                txtMessage.Text = $"Notification Received:\nTitle: {title}\nMessage: {message}";
-                //var msg = new Editor()
-                //{
-                //    Text = $"Notification Received:\nTitle: {title}\nMessage: {message}"
-                //};
-                //stackLayout.Children.Add(msg);
-            });
+                DependencyService.Get<INotificationManager>().ReceiveNotification("Local Notification", txtMessage.Text);
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Message null", "Message not null push notification", "Ok");
+            }
         }
 
         #region Setting FontSize, Font Family

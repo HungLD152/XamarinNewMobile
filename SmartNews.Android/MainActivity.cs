@@ -24,15 +24,9 @@ namespace SmartNews.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-           
-            LoadApplication(new App());
-            //CreateNotificationFromIntent(Intent);
-        }
 
-        //protected override void OnNewIntent(Intent intent)
-        //{
-        //    CreateNotificationFromIntent(intent);
-        //}
+            LoadApplication(new App());
+        }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -40,16 +34,5 @@ namespace SmartNews.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        //void CreateNotificationFromIntent(Intent intent)
-        //{
-        //    if (intent?.Extras != null)
-        //    {
-        //        string title = intent.Extras.GetString(AndroidNotificationManager.TitleKey);
-        //        string message = intent.Extras.GetString(AndroidNotificationManager.MessageKey);
-
-        //        DependencyService.Get<INotificationManager>().ReceiveNotification(title, message);
-        //    }
-        //}
     }
 }
