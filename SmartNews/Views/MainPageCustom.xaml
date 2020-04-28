@@ -51,14 +51,15 @@
         <StackLayout Orientation="Horizontal" Margin="0,5,10,-5">
             <SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
-                        HorizontalOptions="Fill"
+                        HorizontalOptions="Start"
                         VerticalOptions="StartAndExpand"
                         FontAttributes="Italic"
+                        WidthRequest="380"
+                        TextChanged="OnTextChanged"
                         SearchButtonPressed="OnSearchButtonPressed"/>
             <ImageButton Source="settingHome.png" WidthRequest="20" Clicked="OnSettingButtonPressed" HorizontalOptions="EndAndExpand"/>
         </StackLayout>
         <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
-      
         <ListView x:Name="listView" BackgroundColor="{DynamicResource backgroundColor}"
                             ItemsSource="{Binding Items}"
                             IsPullToRefreshEnabled="True"

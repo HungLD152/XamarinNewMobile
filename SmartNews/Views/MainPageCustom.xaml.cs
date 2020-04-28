@@ -56,9 +56,15 @@ namespace SmartNews.Views
             viewModel.LoadRssFeed();
         }
 
+        void OnTextChanged(object sender, EventArgs e)
+        {
+            viewModel.LoadRssFeed();
+        }
+
         void OnSettingButtonPressed(object sender, EventArgs args)
         {
             Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new SettingPage());
         }
     }
 }
+
