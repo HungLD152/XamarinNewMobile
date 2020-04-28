@@ -47,14 +47,18 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout x:Name="ShowData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource backgroundColor}">
-        <tabview:SettingView/>
-        <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
-        <!--<SearchBar x:Name="searchBar" Text="{Binding searchText}"
+        <!--<tabview:SettingView/>-->
+        <StackLayout Orientation="Horizontal" Margin="0,5,10,-5">
+            <SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
                         HorizontalOptions="Fill"
-                        VerticalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand"
                         FontAttributes="Italic"
-                        SearchButtonPressed="OnSearchButtonPressed"/>-->
+                        SearchButtonPressed="OnSearchButtonPressed"/>
+            <ImageButton Source="settingHome.png" WidthRequest="20" Clicked="OnSettingButtonPressed" HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        <tabview:ControlTabBar x:Name="TabBar" ItemsSource="{Binding ItemTabBar}" ItemSelected="{Binding SelectedItem}"/>
+      
         <ListView x:Name="listView" BackgroundColor="{DynamicResource backgroundColor}"
                             ItemsSource="{Binding Items}"
                             IsPullToRefreshEnabled="True"
