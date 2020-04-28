@@ -23,10 +23,18 @@ namespace SmartNews.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+                );
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
             // set a delegate to handle incoming notifications
             UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
         }
+
     }
 }
