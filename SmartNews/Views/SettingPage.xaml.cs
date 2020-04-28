@@ -23,20 +23,22 @@ namespace SmartNews.Views
                 fontNamePiker.Items.Add(item1);
             }
             UpdateStyleItem();
-            notificationManager = DependencyService.Get<INotificationManager>();
-            notificationManager.NotificationReceived += (sender, EventArgs) =>
-            {
-                var evtData = (NotificationEventArgs)EventArgs;
-                ShowNotification(evtData.Title, evtData.Message);
-            };
+            //notification
+            //notificationManager = DependencyService.Get<INotificationManager>();
+            //notificationManager.NotificationReceived += (sender, EventArgs) =>
+            //{
+            //    var evtData = (NotificationEventArgs)EventArgs;
+            //    ShowNotification(evtData.Title, evtData.Message);
+            //};
         }
 
         void OnScheduleClick(object sender, EventArgs e)
         {
-            notificationNumber++;
-            string title = $"Local Notifications #{notificationNumber}";
-            string message = $"You have now received {notificationNumber} notifications!";
-            notificationManager.ScheduleNotification(title, message);
+            //notificationNumber++;
+            //string title = $"Local Notifications #{notificationNumber}";
+            //string message = $"You have now received {notificationNumber} notifications!";
+            //notificationManager.ScheduleNotification(title, message);
+            DependencyService.Get<INotificationManager>().ReceiveNotification("Local Notification", txtMessage.Text);
         }
 
         void ShowNotification(string title, string message)

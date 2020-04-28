@@ -6,11 +6,11 @@ namespace SmartNews.Models
 {
     public interface INotificationManager
     {
-        event EventHandler NotificationReceived;
+        //event EventHandler NotificationReceived;
 
-        void Initialize();
+        //void Initialize();
 
-        int ScheduleNotification(string title, string message);
+        //int ScheduleNotification(string title, string message);
 
         void ReceiveNotification(string title, string message);
     }
