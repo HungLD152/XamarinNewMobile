@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "679023929646",
+    "firebase_url": "https://notificationvti.firebaseio.com",
+    "project_id": "notificationvti",
+    "storage_bucket": "notificationvti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679023929646:android:fdaf18c6b2a02a2c3ef2bf",
+        "android_client_info": {
+          "package_name": "com.companyname.smartnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679023929646-m84q4p3md1i483rl5j5gj7k0flbdf3ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR9zxMZo_PRnvuL0zqZmFmxSB_lr-Ywh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679023929646-m84q4p3md1i483rl5j5gj7k0flbdf3ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
