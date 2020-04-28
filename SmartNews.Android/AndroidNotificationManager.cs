@@ -13,84 +13,81 @@ using Android.Support.V4.App;
 using Xamarin.Forms;
 using AndroidApp = Android.App.Application;
 using Android.Graphics;
+using Android.Media;
 
 [assembly: Dependency(typeof(SmartNews.Droid.AndroidNotificationManager))]
 namespace SmartNews.Droid
 {
     class AndroidNotificationManager : INotificationManager
     {
-        const string channelId = "default";
-        const string channelName = "default";
-        const string channelDescription = "The default channel for notifications.";
-        const int pendingIntentId = 0;
+        private Context mContext;
+        private NotificationManager mNotificationManager;
+        private NotificationCompat.Builder mBuilder;
+        public static String NOTIFICATION_CHANNEL_ID = "10023";
 
-        public const string TitleKey = "title";
-        public const string MessageKey = "message";
-        bool channelInitialized = false;
-        int messageId = -1;
-        NotificationManager manager;
-
-        public event EventHandler NotificationReceived;
-
-        public void Initialize()
+        public AndroidNotificationManager()
         {
-            CreateNotificationChannel();
+            mContext = global::Android.App.Application.Context;
         }
 
-        public int ScheduleNotification(string title, string message)
+        public void ReceiveNotification(String title, String message)
         {
-            if (!channelInitialized)
+            try
             {
-                CreateNotificationChannel();
-            }
+                var intent = new Intent(mContext, typeof(MainActivity));
+                intent.AddFlags(ActivityFlags.ClearTop);
+                intent.PutExtra(title, message);
+                var pendingIntent = PendingIntent.GetActivity(mContext, 0, intent, PendingIntentFlags.OneShot);
 
-            messageId++;
+               // var sound = global::Android.Net.Uri.Parse(ContentResolver.SchemeAndroidResource + "://" + mContext.PackageName + "/" + Resource.Raw.notification);
+                // Creating an Audio Attribute
+                var alarmAttributes = new AudioAttributes.Builder()
+                    .SetContentType(AudioContentType.Sonification)
+                    .SetUsage(AudioUsageKind.Notification).Build();
 
-            Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
-            intent.PutExtra(TitleKey, title);
-            intent.PutExtra(MessageKey, message);
+                mBuilder = new NotificationCompat.Builder(mContext);
+                mBuilder.SetSmallIcon(Resource.Drawable.xamarin_logo);
+                mBuilder.SetContentTitle(title)
+                        .SetAutoCancel(true)
+                        .SetContentTitle(title)
+                        .SetContentText(message)
+                        .SetChannelId(NOTIFICATION_CHANNEL_ID)
+                        .SetPriority((int)NotificationPriority.High)
+                        .SetVibrate(new long[0])
+                        .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate)
+                        .SetVisibility((int)NotificationVisibility.Public)
+                        .SetSmallIcon(Resource.Drawable.xamarin_logo)
+                        .SetContentIntent(pendingIntent);
 
-            PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId, intent, PendingIntentFlags.OneShot);
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(AndroidApp.Context, channelId)
-                .SetContentIntent(pendingIntent)
-                .SetContentTitle(title)
-                .SetContentText(message)
-                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xamarin_logo))
-                .SetSmallIcon(Resource.Drawable.xamarin_logo)
-                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
-            Notification notification = builder.Build();
-            manager.Notify(messageId, notification);
+                NotificationManager notificationManager = mContext.GetSystemService(Context.NotificationService) as NotificationManager;
 
-            return messageId;
-        }
-
-        public void ReceiveNotification(string title, string message)
-        {
-            var args = new NotificationEventArgs()
-            {
-                Title = title,
-                Message = message,
-            };
-            NotificationReceived?.Invoke(null, args);
-        }
-
-        void CreateNotificationChannel()
-        {
-            manager = (NotificationManager)AndroidApp.Context.GetSystemService(AndroidApp.NotificationService);
-
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                var channelNameJava = new Java.Lang.String(channelName);
-                var channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.Default)
+                if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.O)
                 {
-                    Description = channelDescription
-                };
-                manager.CreateNotificationChannel(channel);
-            }
+                    NotificationImportance importance = global::Android.App.NotificationImportance.High;
 
-            channelInitialized = true;
+                    NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, title, importance);
+                    notificationChannel.EnableLights(true);
+                    notificationChannel.EnableVibration(true);
+                    //notificationChannel.SetSound(sound, alarmAttributes);
+                    notificationChannel.SetShowBadge(true);
+                    notificationChannel.Importance = NotificationImportance.High;
+                    notificationChannel.SetVibrationPattern(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
+
+                    if (notificationManager != null)
+                    {
+                        mBuilder.SetChannelId(NOTIFICATION_CHANNEL_ID);
+                        notificationManager.CreateNotificationChannel(notificationChannel);
+                    }
+                }
+
+                notificationManager.Notify(0, mBuilder.Build());
+            }
+            catch (Exception ex)
+            {
+                //
+            }
         }
     }
 }
