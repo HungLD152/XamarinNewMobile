@@ -18,7 +18,7 @@ using Android.Media;
 [assembly: Dependency(typeof(SmartNews.Droid.AndroidNotificationManager))]
 namespace SmartNews.Droid
 {
-    class AndroidNotificationManager : INotificationManager
+    public class AndroidNotificationManager : INotificationManager
     {
         private Context mContext;
         private NotificationManager mNotificationManager;
@@ -39,12 +39,6 @@ namespace SmartNews.Droid
                 intent.PutExtra(title, message);
                 var pendingIntent = PendingIntent.GetActivity(mContext, 0, intent, PendingIntentFlags.OneShot);
 
-               // var sound = global::Android.Net.Uri.Parse(ContentResolver.SchemeAndroidResource + "://" + mContext.PackageName + "/" + Resource.Raw.notification);
-                // Creating an Audio Attribute
-                var alarmAttributes = new AudioAttributes.Builder()
-                    .SetContentType(AudioContentType.Sonification)
-                    .SetUsage(AudioUsageKind.Notification).Build();
-
                 mBuilder = new NotificationCompat.Builder(mContext);
                 mBuilder.SetSmallIcon(Resource.Drawable.xamarin_logo);
                 mBuilder.SetContentTitle(title)
@@ -59,8 +53,6 @@ namespace SmartNews.Droid
                         .SetSmallIcon(Resource.Drawable.xamarin_logo)
                         .SetContentIntent(pendingIntent);
 
-
-
                 NotificationManager notificationManager = mContext.GetSystemService(Context.NotificationService) as NotificationManager;
 
                 if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.O)
@@ -70,7 +62,6 @@ namespace SmartNews.Droid
                     NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, title, importance);
                     notificationChannel.EnableLights(true);
                     notificationChannel.EnableVibration(true);
-                    //notificationChannel.SetSound(sound, alarmAttributes);
                     notificationChannel.SetShowBadge(true);
                     notificationChannel.Importance = NotificationImportance.High;
                     notificationChannel.SetVibrationPattern(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
