@@ -51,6 +51,9 @@
         <StackLayout Orientation="Horizontal" Margin="0,5,10,-5">
             <SearchBar x:Name="searchBar" Text="{Binding searchText}"
                         Placeholder="Search items..."
+                        TextColor="{DynamicResource textColor}"
+                        FontSize="{DynamicResource InputFontsize}"
+                        FontFamily="{DynamicResource fontFamily}"
                         HorizontalOptions="Start"
                         VerticalOptions="StartAndExpand"
                         FontAttributes="Italic"
