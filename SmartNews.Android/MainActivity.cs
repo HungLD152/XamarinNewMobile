@@ -9,6 +9,9 @@ using Android.OS;
 using Android.Content;
 using Xamarin.Forms;
 using SmartNews.Models;
+using Android.Gms.Common;
+using Firebase;
+using Firebase.Iid;
 
 namespace SmartNews.Droid
 {
@@ -26,6 +29,7 @@ namespace SmartNews.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
+            IsPlayServicesAvailable();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -33,6 +37,30 @@ namespace SmartNews.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public bool IsPlayServicesAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                {
+                    //msgText.Text = GoogleApiAvailability.Instance.GetErrorString(resultCode);
+                }
+                else
+                {
+                    // msgText.Text = "This device is not supported";
+                    Finish();
+                }
+                return false;
+            }
+            else
+            {
+                // do whatever if play service is not available
+                //msgText.Text = "Google Play Services is available.";
+                return true;
+            }
         }
     }
 }
