@@ -9,8 +9,7 @@ namespace SmartNews.Views
     {
         public IList<string> ItemfontFamily = new List<string>() { "Arial", "Times New Roman", "UTM Avo", "UTM AvoBold", "UTM Beautiful Caps", "UTM Diana", "UTM Sarah" };
         public IList<int> ItemfontSize = new List<int>() { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
-        INotificationManager notificationManager;
-        int notificationNumber = 0;
+
         public SettingPage()
         {
             InitializeComponent();
@@ -90,5 +89,10 @@ namespace SmartNews.Views
             Application.Current.Properties["Size"] = Convert.ToInt32(fontsizePiker.SelectedItem != null ? fontsizePiker.SelectedItem : 16);
         }
         #endregion
+
+        private void PushNotification_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

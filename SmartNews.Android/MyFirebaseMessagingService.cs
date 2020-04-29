@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Firebase.Iid;
 using Firebase.Messaging;
 
 namespace SmartNews.Droid
@@ -19,6 +20,7 @@ namespace SmartNews.Droid
     {
         public MyFirebaseMessagingService()
         {
+           
         }
         public override void OnMessageReceived(RemoteMessage message)
         {

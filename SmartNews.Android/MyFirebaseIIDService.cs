@@ -15,9 +15,12 @@ namespace SmartNews.Droid
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
+    [Obsolete]
     class MyFirebaseIIDService : FirebaseInstanceIdService
     {
         const string TAG = "MyFirebaseIIDService";
+
+        [Obsolete]
         public override void OnTokenRefresh()
         {
             var refreshedToken = FirebaseInstanceId.Instance.Token;

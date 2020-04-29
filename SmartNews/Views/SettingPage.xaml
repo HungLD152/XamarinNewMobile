@@ -32,16 +32,20 @@
         </StackLayout>
         <StackLayout x:Name="stackLayout">
             <Editor x:Name="txtMessage" Text="Local Notifications on Adroid" 
+                    BackgroundColor="{DynamicResource backgroundColor}"
                     TextColor="{DynamicResource textColor}"
                     FontSize="{DynamicResource InputFontsize}"
                     FontFamily="{DynamicResource fontFamily}" HeightRequest="100"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Push" HorizontalOptions="StartAndExpand" 
                         TextColor="{DynamicResource textColor}"
+                        BackgroundColor="Red"
+                        Clicked="PushNotification_Clicked"
                         FontSize="{DynamicResource InputFontsize}"
                         FontFamily="{DynamicResource fontFamily}"/>
                 <Button Text="Local" Clicked="OnScheduleClick" HorizontalOptions="EndAndExpand"
                         TextColor="{DynamicResource textColor}"
+                        BackgroundColor="Green"
                         FontSize="{DynamicResource InputFontsize}"
                         FontFamily="{DynamicResource fontFamily}"/>
             </StackLayout>
