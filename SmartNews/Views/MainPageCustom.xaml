@@ -55,6 +55,7 @@
                         FontSize="{DynamicResource InputFontsize}"
                         FontFamily="{DynamicResource fontFamily}"
                         PlaceholderColor="{DynamicResource textColor}"
+                        BackgroundColor="{DynamicResource backgroundColor}"
                         CancelButtonColor="{DynamicResource textColor}"
                         HorizontalOptions="Start"
                         VerticalOptions="StartAndExpand"
