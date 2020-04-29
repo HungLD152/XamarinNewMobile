@@ -74,7 +74,6 @@
                             RefreshCommand="{Binding RefreshCommand}"
                             IsRefreshing="{Binding IsRefreshing}"
                             ItemTemplate="{StaticResource rssFeedTemplateSelector}"
-                            HasUnevenRows="True">
-        </ListView>
+                            HasUnevenRows="True"/>
     </StackLayout>
 </ContentPage>
