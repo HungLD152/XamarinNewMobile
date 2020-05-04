@@ -92,7 +92,7 @@ namespace SmartNews.Views
 
         private void PushNotification_Clicked(object sender, EventArgs e)
         {
-
+            DependencyService.Get<INotificationManager>().PushNotification(txtMessage.Text);
         }
     }
 }
