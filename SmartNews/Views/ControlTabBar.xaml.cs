@@ -64,11 +64,11 @@ namespace SmartNews.Views
             (senderObj.BindingContext as TabBarItemModel).IsSelected = true;
             if ((senderObj.BindingContext as TabBarItemModel).IsSelected)
             {
-                senderObj.Margin = new Thickness(0, 5, 0, 1);
-                senderObj.Padding = new Thickness(0, 0, 0, -5);
+                senderObj.Margin = new Thickness(0, 5, 0, 0);
+                senderObj.Padding = new Thickness(0, 0, 0, -6);
                 //senderObj.HeightRequest = 50;
                 BottomColor.BackgroundColor = (senderObj.BindingContext as TabBarItemModel).ItemColor;
-                BottomColor.Margin = new Thickness(0, -5, 0, 0);
+                BottomColor.Margin = new Thickness(0, -1, 0, 0);
             }
             //scroll position
             bool animate = true;
