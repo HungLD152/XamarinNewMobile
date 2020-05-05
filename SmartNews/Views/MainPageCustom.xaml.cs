@@ -17,10 +17,23 @@ namespace SmartNews.Views
             InitializeComponent();
             rssItem = new RSSFeedItem();
             var setting = new SettingPage();
+            var settingTabbar = new SettingTabView();
             viewModel.Url = "https://cdn.24h.com.vn/upload/rss/trangchu24h.rss";
             viewModel.LoadRssFeed();
             BindingContext = viewModel;
             setting.UpdateStyleItem();
+            settingTabbar.UpdateSettingItem();
+            if (Xamarin.Forms.Application.Current.Properties.ContainsKey("TabItem"))
+            {
+                if (Convert.ToBoolean(Xamarin.Forms.Application.Current.Properties["TabItem"].ToString()))
+                {
+                    TabBar.IsVisible = false;
+                }
+                else
+                {
+                    TabBar.IsVisible = true;
+                }
+            }
             TabBar.OnTabBarClicked += TabBar_OnTabItemClicked;
         }
 

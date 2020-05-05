@@ -141,6 +141,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>18.1.0.46</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
   </ItemGroup>
@@ -150,5 +153,8 @@
       <Project>{0ECDF73E-3283-4C11-8346-1F9BDD0080BC}</Project>
       <Name>SmartNews</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\DragIndicator.png" />
   </ItemGroup>
 </Project>

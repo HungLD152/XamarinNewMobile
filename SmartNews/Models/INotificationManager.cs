@@ -13,5 +13,6 @@ namespace SmartNews.Models
         //int ScheduleNotification(string title, string message);
 
         void ReceiveNotification(string title, string message);
+        void PushNotification(string mess);
     }
 }

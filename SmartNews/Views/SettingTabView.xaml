@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SmartNews.Views.SettingTabView">
+    <ContentPage.Content>
+        <StackLayout>
+            <syncfusion:SfListView x:Name="listView"
+                                ItemsSource="{Binding ItemTabBar}"
+                                BackgroundColor="#FFE8E8EC"
+                                DragStartMode="OnDragIndicator"
+                                ItemSize="60">      
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="*" />-->
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="textLabel" Text="{Binding TitleBar}" Grid.Column="1" FontSize="15" TextColor="#333333" />
+                            <syncfusion:DragIndicatorView Grid.Column="2" ListView="{x:Reference listView}" 
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="Center">   
+                                <Grid Padding="5, 10, 5, 10">
+                                    <Image Source="DragIndicator.png" />
+                                </Grid>
+                            </syncfusion:DragIndicatorView>
+                        </Grid>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <Label Text="Hide TabItem"/>
+            <Switch x:Name="ShowTabItem" IsToggled="False" Toggled="OnToggled" HorizontalOptions="StartAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

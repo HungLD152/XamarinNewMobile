@@ -24,11 +24,16 @@
         <Label Text="Dark Mode" TextColor="{DynamicResource textColor}"
                 FontSize="{DynamicResource InputFontsize}"
                 FontFamily="{DynamicResource fontFamily}"/>
-        <Switch x:Name="checkFs" IsToggled="False" Toggled="OnToggled" />
+        <Switch x:Name="checkFs" IsToggled="False" Toggled="OnToggled"  HorizontalOptions="StartAndExpand"/>
+        <Button Text="Edit TabItem" Clicked="EditTabitemClick" HorizontalOptions="StartAndExpand"
+                        TextColor="{DynamicResource textColor}"
+                        FontSize="{DynamicResource InputFontsize}"
+                        FontFamily="{DynamicResource fontFamily}"/>
         <StackLayout IsVisible="True">
             <Label x:Name="lblFontFamily" Text="Family"/>
             <Label x:Name="lblFontsize" Text="Size"/>
             <Label x:Name="IsDankmode" Text="Mode"/>
+            <Label x:Name="IsTabItem" Text="TabItem"/>
         </StackLayout>
         <StackLayout x:Name="stackLayout">
             <Editor x:Name="txtMessage" Text="Local Notifications on Adroid" 
