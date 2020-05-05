@@ -1,4 +1,6 @@
 ﻿using SmartNews.ViewModels;
+using Syncfusion.DataSource.Extensions;
+using Syncfusion.ListView.XForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,14 @@ namespace SmartNews.Views
             BindingContext = viewModel;
             this.listView.DragDropController.UpdateSource = true;
             UpdateSettingItem();
+        }
+
+        private void ListView_ItemDragging(object sender, ItemDraggingEventArgs e)
+        {
+            if (e.Action == DragAction.Drop)
+            {
+                viewModel.ItemTabBar.MoveTo(1, 5);
+            }
         }
 
         public void UpdateSettingItem()

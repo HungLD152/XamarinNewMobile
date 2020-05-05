@@ -22,7 +22,7 @@
                                 <ColumnDefinition Width="10" />
                             </Grid.ColumnDefinitions>
                             <Label x:Name="textLabel" Text="{Binding TitleBar}" Grid.Column="1" FontSize="15" TextColor="#333333" />
-                            <syncfusion:DragIndicatorView Grid.Column="2" ListView="{x:Reference listView}" 
+                            <syncfusion:DragIndicatorView Grid.Column="2" ListView="{x:Reference listView}"
                                 HorizontalOptions="EndAndExpand" 
                                 VerticalOptions="Center">   
                                 <Grid Padding="5, 10, 5, 10">
