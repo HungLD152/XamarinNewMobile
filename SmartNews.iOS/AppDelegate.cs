@@ -23,6 +23,8 @@ namespace SmartNews.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjUyMDk4QDMxMzgyZTMxMmUzME10Q1dMQ2RaREhNcHluU0RlR0tDdXkzV2pVcWVQSEc5WTNlbXZWN1dsUWc9");
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(

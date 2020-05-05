@@ -22,7 +22,8 @@ namespace SmartNews.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjUyMDk4QDMxMzgyZTMxMmUzME10Q1dMQ2RaREhNcHluU0RlR0tDdXkzV2pVcWVQSEc5WTNlbXZWN1dsUWc9");
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
