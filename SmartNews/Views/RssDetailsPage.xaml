@@ -2,23 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SmartNews.Views.RssDetailsPage">
-        <StackLayout x:Name="Detail" BackgroundColor="{DynamicResource backgrountColor}">
+    <AbsoluteLayout Padding="0">
             <Label x:Name="labelLoading" Text="Loading..." HorizontalOptions="Center" IsVisible="True"/>
-            <WebView x:Name="webViewDetail" BackgroundColor="{DynamicResource backgrountColor}"
-                     VerticalOptions="FillAndExpand"
+            <WebView x:Name="webViewDetail"
+                     AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="0,1,1,1"
                      Navigated="webviewNavigated"
                      Navigating="webviewNavigating"
-                     HorizontalOptions="FillAndExpand"/>
-            <StackLayout Orientation="Horizontal" HeightRequest="35" Margin="5,0,5,5">
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"/>
+            <StackLayout Orientation="Horizontal" 
+                         HeightRequest="25" Margin="5,0,5,5"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="EndAndExpand"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,1,AutoSize,AutoSize">
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android">0</On>
+                    <On Platform="iOS">0,0,0,20</On>
+                </OnPlatform>
+            </StackLayout.Margin>
                 <ImageButton Source="back.png"
-                        HorizontalOptions="StartAndExpand"
-                        Clicked="OnBackButtonClicked" />
+                             Grid.Column="1"
+                             HorizontalOptions="Start"
+                             Clicked="OnBackButtonClicked" />
                 <ImageButton Source="refresh.png"
-                        HorizontalOptions="CenterAndExpand"
-                        Clicked="OnRefreshButtonClicked" />
+                             Grid.Column="2"
+                             HorizontalOptions="Center"
+                             Clicked="OnRefreshButtonClicked" />
                 <ImageButton Source="next.png"
-                        HorizontalOptions="EndAndExpand"
-                        Clicked="OnForwardButton_Clicked" />
+                             Grid.Column="3"
+                             HorizontalOptions="End"
+                             Clicked="OnForwardButton_Clicked" />
             </StackLayout>
-        </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

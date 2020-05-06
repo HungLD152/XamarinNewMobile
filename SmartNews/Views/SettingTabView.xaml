@@ -12,7 +12,7 @@
             <syncfusion:SfListView x:Name="listView"
                                 ItemsSource="{Binding ItemTabBar}"
                                 BackgroundColor="#FFE8E8EC"
-                                DragStartMode="OnDragIndicator"
+                                DragStartMode="OnHold, OnDragIndicator"
                                 ItemSize="60">      
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate>

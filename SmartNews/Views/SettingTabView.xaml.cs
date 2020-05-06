@@ -20,8 +20,8 @@ namespace SmartNews.Views
         {
             InitializeComponent();
             BindingContext = viewModel;
-            this.listView.DragDropController.UpdateSource = true;
             UpdateSettingItem();
+            this.listView.DragDropController.UpdateSource = true;
         }
 
         private void ListView_ItemDragging(object sender, ItemDraggingEventArgs e)
