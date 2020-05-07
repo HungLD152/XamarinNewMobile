@@ -39,7 +39,7 @@ namespace SmartNews.Views
             if (previousOffset >= e.ScrollY)
             {
                 // Up direction  
-                viewModel.heightImages = 150;
+                viewModel.heightImages = 150 - e.ScrollY;
             }
             else
             {
