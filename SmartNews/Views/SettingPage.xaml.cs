@@ -83,7 +83,7 @@ namespace SmartNews.Views
         }
 
         void fontFamily_SelectedIndexChanged(object sender, EventArgs args)
-        {
+        {  
             Application.Current.Resources["fontFamily"] = fontNamePiker.SelectedItem;
             Application.Current.Properties["Family"] = fontNamePiker.SelectedItem;
         }

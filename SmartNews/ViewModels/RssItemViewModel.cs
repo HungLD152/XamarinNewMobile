@@ -21,6 +21,7 @@ namespace SmartNews.ViewModels
         public string Url { get; set; }
         public string Parameter { get; set; }
         public string searchText { get; set; }
+        public double heightImages { get; set; }
         public ObservableCollection<RSSFeedItem> Items { get; set; } = new ObservableCollection<RSSFeedItem>();
         public ObservableCollection<TabBarItemModel> ItemTabBar => GetTabBarItemModel();
         bool isRefreshing;

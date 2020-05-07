@@ -7,13 +7,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SmartNews.Views.SettingTabView">
-    <ContentPage.Content>
+    <StackLayout>
+        <StackLayout x:Name="layoutHeader" HeightRequest="{Binding heightImages}">
+            <Image x:Name="Images" Source="Images.png" HorizontalOptions="Center" WidthRequest="{Binding heightImages}" HeightRequest="{Binding heightImages}"/>
+        </StackLayout>
         <StackLayout>
             <syncfusion:SfListView x:Name="listView"
                                 ItemsSource="{Binding ItemTabBar}"
                                 BackgroundColor="#FFE8E8EC"
                                 DragStartMode="OnHold, OnDragIndicator"
-                                ItemSize="60">      
+                                ItemSize="60">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
@@ -24,7 +27,7 @@
                             <Label x:Name="textLabel" Text="{Binding TitleBar}" Grid.Column="1" FontSize="15" TextColor="#333333" />
                             <syncfusion:DragIndicatorView Grid.Column="2" ListView="{x:Reference listView}"
                                 HorizontalOptions="EndAndExpand" 
-                                VerticalOptions="Center">   
+                                VerticalOptions="Center">
                                 <Grid Padding="5, 10, 5, 10">
                                     <Image Source="DragIndicator.png" />
                                 </Grid>
@@ -36,5 +39,5 @@
             <Label Text="Hide TabItem"/>
             <Switch x:Name="ShowTabItem" IsToggled="False" Toggled="OnToggled" HorizontalOptions="StartAndExpand"/>
         </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>
