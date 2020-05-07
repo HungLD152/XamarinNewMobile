@@ -157,4 +157,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\DragIndicator.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.jpg" />
+  </ItemGroup>
 </Project>
